@@ -15,7 +15,13 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::all();
+        // $posts = Post::all();
+        $posts = Post::get(["id","name","text"]);
+        foreach($posts as $p){
+
+            var_dump($p->name);
+        }
+        
         return view("posts.index",compact("posts"));
     }
 

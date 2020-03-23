@@ -22,3 +22,13 @@ Route::resource('posts', 'PostController');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/calendar', 'CalendarController@index');
+
+Route::get('event/add','EventController@createEvent');
+Route::post('event/add','EventController@store');
+Route::get('event','EventController@calender');
+
+
+Route::get('kintone','KintoneController@basic_request');
+// 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Post;
 use App\Http\Requests\PostRequest;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class PostController extends Controller
 {
@@ -16,13 +17,91 @@ class PostController extends Controller
     public function index()
     {
         // $posts = Post::all();
-        $posts = Post::get(["id","name","text"]);
-        foreach($posts as $p){
+        // $posts = Post::get(["id","name","text"]);
+        // foreach($posts as $p){
 
-            var_dump($p->name);
+        //     var_dump($p->name);
+        // }
+        // echo Carbon::now('Asia/Tokyo');
+        // return view("posts.index",compact("posts"));
+
+        $start = Carbon::now('Asia/Tokyo')->startOfWeek(); //->toDateString();
+        $end = Carbon::now('Asia/Tokyo')->endOfWeek(); //->toDateString();
+
+        $i = 0;
+        $a = 0;
+        $weeks = [
+            [
+                "user_id" =>1,
+                "week_id" =>1,
+                "timezone_id" =>1,
+            ],
+            [
+                "user_id" =>2,
+                "week_id" =>3,
+                "timezone_id" =>1,
+            ],
+            [
+                "user_id" =>2,
+                "week_id" =>3,
+                "timezone_id" =>1,
+            ],            [
+                "user_id" =>2,
+                "week_id" =>5,
+                "timezone_id" =>1,
+            ],            [
+                "user_id" =>2,
+                "week_id" =>6,
+                "timezone_id" =>1,
+            ],            [
+                "user_id" =>2,
+                "week_id" =>2,
+                "timezone_id" =>1,
+            ],
+        ];
+        //BaseShift::get(['user_id', 'week_id', 'timezone_id']);
+
+        $date = 0;
+        $a = 0;
+        foreach ($weeks as $week) {
+            // var_dump($week);
+            $user_id = $week["user_id"];
+            $w = $week["week_id"];
+            $timezone_id = $week["timezone_id"];
+            
+            // echo $start;
+            // echo $end;
+            $week_id;
+            var_dump($week).'<br>';
+
+            while ($start < $end) {
+                echo "aaa".$w;
+                //echo $start.'(start)<br>';
+                // $start->dayOfWeekIso;
+                // $date = $start;
+                // echo "a";
+                // var_dump($week).'<br>';
+                // echo "week";
+                // var_dump($w).'<br>';
+                // if ($a === $week_id) {
+                //     //echo $start . "<br>";
+                //     $result = $date;
+                // }
+                // // var_dump($result);
+                 $start = $start->addDays(1);
+            }
+            // dump($result);
+            // echo "test".$week_id;
+            $data[$i] = [
+                'user_id' => $user_id,
+                'week_id' => $w,
+                'timezone_id' => $timezone_id,
+                // 'date' => $result->toDateString(),
+            ];
+            echo $i++;
         }
-        
-        return view("posts.index",compact("posts"));
+        dump($data);
+
     }
 
     /**

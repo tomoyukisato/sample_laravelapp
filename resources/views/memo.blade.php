@@ -27,7 +27,6 @@
   <div id="app">
     <v-app>
       <app-header></app-header>
-      <fullcalendar></fullcalendar>
       <memo-list></memo-list>
     </v-app>
 

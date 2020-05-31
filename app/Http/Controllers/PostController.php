@@ -25,7 +25,7 @@ class PostController extends Controller
         // echo Carbon::now('Asia/Tokyo');
         // return view("posts.index",compact("posts"));
 
-        $start = Carbon::now('Asia/Tokyo')->startOfWeek(); //->toDateString();
+        //->toDateString();
         $end = Carbon::now('Asia/Tokyo')->endOfWeek(); //->toDateString();
 
         $i = 0;
@@ -65,6 +65,8 @@ class PostController extends Controller
         $a = 0;
         foreach ($weeks as $week) {
             // var_dump($week);
+            $start = Carbon::now('Asia/Tokyo')->startOfWeek(); 
+
             $user_id = $week["user_id"];
             $w = $week["week_id"];
             $timezone_id = $week["timezone_id"];
@@ -72,38 +74,50 @@ class PostController extends Controller
             // echo $start;
             // echo $end;
             $week_id;
-            var_dump($week).'<br>';
-
-            while ($start < $end) {
-                echo "aaa".$w;
-                //echo $start.'(start)<br>';
-                // $start->dayOfWeekIso;
-                // $date = $start;
-                // echo "a";
-                // var_dump($week).'<br>';
-                // echo "week";
-                // var_dump($w).'<br>';
-                // if ($a === $week_id) {
-                //     //echo $start . "<br>";
-                //     $result = $date;
-                // }
-                // // var_dump($result);
-                 $start = $start->addDays(1);
-            }
+            // var_dump($week).'<br>';
+            $this->getDate($w , $start,$end);
+            // for ($a = $start ; $start < $end ; $start->addDays(1) ) {
+            //     echo "aaa".$w;
+            //     //echo $start.'(start)<br>';
+            //     // $start->dayOfWeekIso;
+            //     // $date = $start;
+            //     // echo "a";
+            //     // var_dump($week).'<br>';
+            //     // echo "week";
+            //     // var_dump($w).'<br>';
+            //     // if ($a === $week_id) {
+            //     //     //echo $start . "<br>";
+            //     //     $result = $date;
+            //     // }
+            //     // // var_dump($result);
+            //      $start = $start->addDays(1);
+            // }
             // dump($result);
             // echo "test".$week_id;
-            $data[$i] = [
-                'user_id' => $user_id,
-                'week_id' => $w,
-                'timezone_id' => $timezone_id,
-                // 'date' => $result->toDateString(),
-            ];
-            echo $i++;
+            // $data[$i] = [
+            //     'user_id' => $user_id,
+            //     'week_id' => $w,
+            //     'timezone_id' => $timezone_id,
+            //     // 'date' => $result->toDateString(),
+            // ];
+            echo $i++."回";
         }
-        dump($data);
+        // dump($data);
 
     }
+    public function getDate($week, $start, $end){
 
+        while( $start < $end ){
+            $d = $start->dayOfWeekIso;
+            $d = $d - 1; 
+            if ($d === $week) {
+                $result = $d;
+            }
+            $start = $start->addDays(1);
+        }
+        return $date;
+
+    }
     /**
      * Show the form for creating a new resource.
      *

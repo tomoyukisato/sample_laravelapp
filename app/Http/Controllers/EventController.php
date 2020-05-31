@@ -24,27 +24,32 @@ class EventController extends Controller
     }
     public function calender()
             {
+                
+                $cnt = 0;
                 $events = [];
                 $data = Event::all();
+                
                 if($data->count())
                  {
                     foreach ($data as $key => $value) 
                     {
                         $events[] = Calendar::event(
                             $value->title,
-                            true,
+                            false,
                             new \DateTime($value->start_date),
-                            new \DateTime($value->end_date.'+1 day'),
+                            new \DateTime($value->end_date),
                             null,
                             // Add color
-                         [
-                             'color' => '#000000',
-                             'textColor' => '#008000',
-                         ]
+                            [
+                                'color' => $value->color,
+                                'textColor' => '#000000'
+                            ]
                         );
                     }
                 }
                 $calendar = Calendar::addEvents($events);
+                // var_dump($calendar);
+
                 return view('calendar', compact('calendar'));
             }
 }

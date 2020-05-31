@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\EventModel;
+use App\Event;
 
 class CalendarController extends Controller
 {
@@ -26,17 +26,17 @@ class CalendarController extends Controller
             'stringEventId' //optionally, you can specify an event ID
         );
 
-        $eloquentEvent = EventModel::first(); //EventModel implements MaddHatter\LaravelFullcalendar\Event
+        $eloquentEvent = Event::first(); //EventModel implements MaddHatter\LaravelFullcalendar\Event
 
-        $calendar = \Calendar::addEvents($events) //add an array with addEvents
-            ->addEvent($eloquentEvent, [ //set custom color fo this event
-                'color' => '#800',
-            ])->setOptions([ //set fullcalendar options
-                'firstDay' => 1
-            ])->setCallbacks([ //set fullcalendar callback options (will not be JSON encoded)
-                'viewRender' => 'function() {alert("Callbacks!");}'
-            ]);
+        $calendar = \Calendar::addEvents($events); //add an array with addEvents
+            // ->addEvent($eloquentEvent, [ //set custom color fo this event
+            //     'color' => '#800',
+            // ])->setOptions([ //set fullcalendar options
+            //     'firstDay' => 1
+            // ])->setCallbacks([ //set fullcalendar callback options (will not be JSON encoded)
+            //     'viewRender' => 'function() {alert("Callbacks!");}'
+            // ]);
 
-        return view('hello', compact('calendar'));
+        return view('calendar', compact('calendar'));
     }
 }

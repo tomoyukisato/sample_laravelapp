@@ -5,12 +5,20 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 require('./bootstrap');
-window.Vue = require('vue');
+window.Vue = require("vue");
 
-import Vuetify from 'vuetify';
+import Vue from "vue";
+import router from "./router";
+
+// import Vuetify from 'vuetify';
 import 'vuetify/dist/vuetify.min.css';
+// import VueRouter from 'vue-router';
+
+// import router from "./router";
+
 Vue.use(Vuetify);
 
+// Vue.use(VueRouter);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -19,7 +27,7 @@ Vue.use(Vuetify);
  */
 
 Vue.component('example', require('./components/Example.vue'));
-Vue.component('fullcalendar', require('./components/FullCalendar.vue'));
+// Vue.component('fullcalendar', require('./components/FullCalendar.vue'));
 Vue.component('calendar', require('./components/Calendar.vue'));
 Vue.component('app-header', require('./components/Header.vue'));
 Vue.component('memo-list', require('./components/MemoList.vue'));
@@ -27,6 +35,7 @@ Vue.component('memo-list', require('./components/MemoList.vue'));
 
 const app = new Vue({
     el: '#app',  
-    vuetify: new Vuetify()
+    vuetify: new Vuetify(),
+    router
 });
 

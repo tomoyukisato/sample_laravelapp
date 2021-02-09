@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateMemosTable extends Migration
+class CreateImagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,10 @@ class CreateMemosTable extends Migration
      */
     public function up()
     {
-        Schema::create('memos', function (Blueprint $table) {
+        Schema::create('images', function (Blueprint $table) {
             $table->increments('id');
-            $table->String('title',50);
-            $table->text('content');
-            $table->BigInteger('user_id');
-            $table->datetime('start');
-            $table->datetime('end');
-            $table->TinyInteger('allDay');
-            
+            $table->integer('memo_id');
+            $table->string('file_path');
             $table->timestamps();
         });
     }
@@ -33,6 +28,6 @@ class CreateMemosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('memos');
+        Schema::dropIfExists('images');
     }
 }

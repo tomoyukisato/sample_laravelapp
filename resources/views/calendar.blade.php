@@ -28,9 +28,10 @@
     <v-app>
       <app-header></app-header>
       <fullcalendar></fullcalendar>
-      <memo-list></memo-list>
+      <router-link to="/">Home</router-link>
+      <router-view/>
     </v-app>
-
+    
   </div>
 <script src="{{ asset('js/app.js') }}"></script>
 </body>

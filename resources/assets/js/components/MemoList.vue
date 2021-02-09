@@ -1,38 +1,27 @@
 <template>
-<v-dialog v-model="dialog" width="80%">
-    <v-card>
-        <v-card-title class="headline grey lighten-2" primary-title>
-            {{ header }}
-        </v-card-title>
+    <div>
         <v-list three-line>
-        <template v-for="(item, index) in items">
-            <!-- <v-subheader
-            v-text="header"
-            ></v-subheader> -->
+                <template v-for="(item, index) in items">
+                <v-list-item :key="index" @click="clickDetail(item.id)">
 
-        
-            <v-list-item
-            @click=""
-            >
-            <!-- <v-list-item-avatar>
-                <v-img :src="item.avatar"></v-img>
-            </v-list-item-avatar> -->
-                <v-list-item-icon>
-                    <v-icon large color="green darken-2">star</v-icon>
-                </v-list-item-icon>
-                <v-list-item-content>
-                    <v-list-item-title v-html="item.title"></v-list-item-title>
-                    <v-list-item-subtitle v-html="item.content"></v-list-item-subtitle>
-                </v-list-item-content>
-            </v-list-item>
-            <v-divider
-            :inset="true"
-            ></v-divider>
-        </template>
+                        <v-list-item-icon>
+                            <v-icon large color="green darken-2">star</v-icon>
+                        </v-list-item-icon>
+                        <v-list-item-content>
+                            <v-list-item-title v-html="item.title"></v-list-item-title>
+                            <v-list-item-subtitle v-html="item.content"></v-list-item-subtitle>
+                        </v-list-item-content>
+                        
+                </v-list-item>
+                <v-divider :inset="inset" :key="index"></v-divider> 
+                </template>
         </v-list>
-    </v-card>
-</v-dialog>
+
+    </div>
 </template>
+
+
+
 
 <script>
   export default {
@@ -40,7 +29,7 @@
     data: () => ({
         header: 'メモ',
         items: [],
-        dialog :true,
+        dialog :false,
         // {
         //   title: 'Brunch this weekend?',
         //   content: "<span class='text--primary'>Ali Connors</span> &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?",
@@ -75,11 +64,19 @@
     },
     methods: {
         getSchedule(){
-            axios.get('/sample_laravelapp/public/api/memo').then(
+            axios.get('/daily_menu_app/public/api/memo').then(
             response => {
                 this.items = response.data;
             })
         },
+        clickDetail(){
+            // document.z
+        }
     }
   }
 </script>
+<style>
+    hr{
+        margin:0px;
+    }
+</style>

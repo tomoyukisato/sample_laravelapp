@@ -19,4 +19,6 @@ use Illuminate\Http\Request;
 
 Route::group(['middleware' => ['api']], function(){
     Route::resource('memo', 'Api\MemoController');
+    Route::get('image/{id}', 'Api\ImageController@scopeImage');
+    Route::post('file/{id}', 'Api\ImageController@fileUpload');
   });
